@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Usuarios - 360 Tactical Trainer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <header class="topbar">
+
+        <div class="logo">
+            360
+        </div>
+
+        <div class="title">
+            TACTICAL TRAINER
+        </div>
+
+        <div class="status">
+            ● SERVIDOR ONLINE
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <section class="welcome">
+
+            <h1>SELECCIÓN DE USUARIO</h1>
+
+            <p>
+                Seleccioná tu usuario para ingresar al sistema.
+            </p>
+
+        </section>
+
+
+        <section class="user-panel">
+
+
+            <div class="user-list">
+
+                <h2>USUARIOS</h2>
+
+
+                {% if usuarios %}
+
+                    {% for usuario in usuarios %}
+
+                    <a
+                        href="/usuarios/entrar/{{ usuario.id }}"
+                        class="user-card"
+                    >
+
+                        <div class="user-icon">
+                            👤
+                        </div>
+
+                        <div class="user-info">
+
+                            <strong>
+                                {{ usuario.nombre_completo }}
+                            </strong>
+
+                            <span>
+                                @{{ usuario.nombre_usuario }}
+                            </span>
+
+                        </div>
+
+                        <div class="user-role">
+
+                            {{ usuario.rol | upper }}
+
+                        </div>
+
+                    </a>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p class="empty-users">
+                        Todavía no hay usuarios registrados.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="create-user">
+
+                <h2>CREAR USUARIO</h2>
+
+                <form
+                    action="/usuarios/crear"
+                    method="post"
+                >
+
+                    <label>
+                        Nombre de usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nombre_usuario"
+                        placeholder="Ej: alkon"
+                        required
+                    >
+
+
+                    <label>
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nombre_completo"
+                        placeholder="Ej: Alkon"
+                        required
+                    >
+
+
+                    <label>
+                        Rol
+                    </label>
+
+                    <select
+                        name="rol"
+                        required
+                    >
+
+                        <option value="infanteria">
+                            Infantería
+                        </option>
+
+                        <option value="suboficial">
+                            Suboficial
+                        </option>
+
+                        <option value="oficial">
+                            Oficial
+                        </option>
+
+                        <option value="comandante">
+                            Comandante
+                        </option>
+
+                        <option value="administrador">
+                            Administrador
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="submit"
+                        class="create-button"
+                    >
+                        CREAR USUARIO
+                    </button>
+
+                </form>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            360 Tactical Trainer
+        </span>
+
+        <span>
+            v0.1.0
+        </span>
+
+    </footer>
+
+</body>
+
+</html>

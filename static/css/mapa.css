@@ -1,0 +1,393 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+
+/* =====================================
+   CONTENEDOR PRINCIPAL
+===================================== */
+
+.tactical-app {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =====================================
+   BARRA SUPERIOR
+===================================== */
+
+.topbar {
+
+    height: 60px;
+
+    background: #181818;
+
+    border-bottom:
+        1px solid #333;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        0 15px;
+
+    gap: 10px;
+
+}
+
+
+.logo {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-right: 30px;
+
+}
+
+
+.top-button {
+
+    background: #252525;
+
+    color: white;
+
+    border: 1px solid #444;
+
+    padding:
+        8px 14px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+
+.top-button:hover {
+
+    background: #333;
+
+}
+
+
+/* =====================================
+   ÁREA PRINCIPAL
+===================================== */
+
+.workspace {
+
+    flex: 1;
+
+    display: flex;
+
+    min-height: 0;
+
+}
+
+
+/* =====================================
+   PANEL IZQUIERDO
+===================================== */
+
+.left-panel {
+
+    width: 80px;
+
+    background: #191919;
+
+    border-right:
+        1px solid #333;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 10px 5px;
+
+    gap: 8px;
+
+}
+
+
+.tool {
+
+    width: 65px;
+
+    height: 55px;
+
+    background: #242424;
+
+    color: white;
+
+    border: 1px solid #3a3a3a;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 11px;
+
+}
+
+
+.tool-icon {
+
+    font-size: 20px;
+
+}
+
+
+.tool:hover {
+
+    background: #333;
+
+}
+
+
+.tool.active {
+
+    background: #3d3d3d;
+
+    border-color: #aaa;
+
+}
+
+
+/* =====================================
+   ÁREA DEL MAPA
+===================================== */
+
+.map-area {
+
+    flex: 1;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #080808;
+
+}
+
+
+.map-workspace {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    transform-origin:
+        center center;
+
+}
+
+
+.map-layer {
+
+    position: relative;
+
+}
+
+
+.map-image {
+
+    display: block;
+
+    max-width: none;
+
+}
+
+
+#mapCanvas {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    pointer-events: auto;
+
+}
+
+
+/* =====================================
+   PANEL DERECHO
+===================================== */
+
+.right-panel {
+
+    width: 260px;
+
+    background: #191919;
+
+    border-left:
+        1px solid #333;
+
+    padding: 15px;
+
+    overflow-y: auto;
+
+}
+
+
+.panel-title {
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #bbb;
+
+    margin-bottom: 15px;
+
+}
+
+
+.property {
+
+    background: #222;
+
+    border:
+        1px solid #333;
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.property-label {
+
+    color: #888;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.property-value {
+
+    color: white;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================
+   BARRA INFERIOR
+===================================== */
+
+.bottom-bar {
+
+    height: 35px;
+
+    background: #181818;
+
+    border-top:
+        1px solid #333;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #aaa;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================
+   SELECTOR DE MAPA
+===================================== */
+
+.map-selector {
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 10px;
+
+    z-index: 20;
+
+    background: #181818;
+
+    border:
+        1px solid #444;
+
+    color: white;
+
+    padding: 7px;
+
+    border-radius: 5px;
+
+}
+
+
+/* =====================================
+   INDICADOR DE ZOOM
+===================================== */
+
+.zoom-indicator {
+
+    position: absolute;
+
+    bottom: 10px;
+
+    right: 10px;
+
+    z-index: 20;
+
+    background: rgba(20,20,20,.9);
+
+    border:
+        1px solid #444;
+
+    padding:
+        6px 10px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+}

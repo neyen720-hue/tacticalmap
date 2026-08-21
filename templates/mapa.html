@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        360 Tactical Trainer
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/mapa.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="tactical-app">
+
+
+    <!-- =====================================
+         BARRA SUPERIOR
+    ====================================== -->
+
+    <header class="topbar">
+
+
+        <div class="logo">
+
+            360 TACTICAL TRAINER
+
+        </div>
+
+
+        <button
+            class="top-button"
+            onclick="deshacer()"
+        >
+
+            ↶
+
+        </button>
+
+
+        <button
+            class="top-button"
+            onclick="rehacer()"
+        >
+
+            ↷
+
+        </button>
+
+
+        <button
+            class="top-button"
+            onclick="guardarPlan()"
+        >
+
+            💾 GUARDAR
+
+        </button>
+
+
+       <button onclick="iniciarSimulacion()">
+    ▶ Iniciar simulación
+</button>
+
+<button onclick="pausarSimulacion()">
+    ⏸ Pausar
+</button>
+
+
+        <div
+            style="
+                margin-left:auto;
+                color:#aaa;
+                font-size:12px;
+            "
+        >
+
+            OPERACIÓN SIN TÍTULO
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================
+         ÁREA PRINCIPAL
+    ====================================== -->
+
+    <main class="workspace">
+
+
+        <!-- =================================
+             PANEL IZQUIERDO
+        ================================== -->
+
+        <aside class="left-panel">
+
+
+            <button
+                class="tool active"
+                onclick="
+                    seleccionarHerramienta(
+                        'seleccionar'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    ✋
+                </span>
+
+                Selección
+
+            </button>
+
+<button
+    class="top-button"
+    onclick="deshacer()"
+>
+    ↶ DESHACER
+</button>
+
+<button
+    class="top-button"
+    onclick="rehacer()"
+>
+    ↷ REHACER
+</button>
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'linea'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    ─
+                </span>
+
+                Línea
+
+            </button>
+
+
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'flecha'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    ➜
+                </span>
+
+                Flecha
+
+            </button>
+
+
+<button onclick="activarModoRuta()">
+    🛣️ Crear ruta
+</button>
+
+<button onclick="confirmarRuta()">
+    ✅ Confirmar ruta
+</button>
+
+<button onclick="iniciarSimulacion()">
+    ▶️ Iniciar simulación
+</button>
+
+<button onclick="pausarSimulacion()">
+    ⏸️ Pausar simulación
+</button>
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'circulo'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    ○
+                </span>
+
+                Círculo
+
+            </button>
+
+
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'rectangulo'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    □
+                </span>
+
+                Área
+
+            </button>
+
+
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'punto'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    📍
+                </span>
+
+                Punto
+
+            </button>
+
+
+
+            <button
+                class="tool"
+                onclick="
+                    seleccionarHerramienta(
+                        'texto'
+                    )
+                "
+            >
+
+                <span class="tool-icon">
+                    T
+                </span>
+
+                Texto
+
+            </button>
+
+<div class="unidad-config">
+
+    <label for="tipoUnidad">
+        Tipo de unidad
+    </label>
+
+    <select id="tipoUnidad">
+
+        <option value="infanteria">
+            👤 Infantería
+        </option>
+
+        <option value="camion_inf">
+            🚚 Camión de infantería
+        </option>
+
+        <option value="camion_supply">
+            📦 Camión de suministros
+        </option>
+
+        <option value="tanque">
+            🛡️ Tanque
+        </option>
+
+    </select>
+
+
+    <input
+        id="nombreUnidad"
+        type="text"
+        placeholder="Nombre de unidad"
+    >
+
+</div>
+
+            <button
+                class="tool"
+                onclick="
+                    activarModoUnidad()
+                "
+            >
+
+                <span class="tool-icon">
+                    👤
+                </span>
+
+                Unidad
+
+            </button>
+
+
+
+            <button
+                class="tool"
+                onclick="
+                    activarModoVehiculo()
+                "
+            >
+
+                <span class="tool-icon">
+                    🚚
+                </span>
+
+                Vehículo
+
+            </button>
+<button
+    class="tool"
+    onclick="
+        activarModoRuta()
+    "
+>
+
+    <span class="tool-icon">
+        🛣️
+    </span>
+
+    Crear ruta
+
+</button>
+
+
+<button
+    class="tool"
+    onclick="
+        confirmarRuta()
+    "
+>
+
+    <span class="tool-icon">
+        ✅
+    </span>
+
+    Confirmar ruta
+
+</button>
+
+
+<button
+    class="tool"
+    onclick="
+        iniciarSimulacion()
+    "
+>
+
+    <span class="tool-icon">
+        ▶️
+    </span>
+
+    Iniciar simulación
+
+</button>
+
+
+<button
+    class="tool"
+    onclick="
+        pausarSimulacion()
+    "
+>
+
+    <span class="tool-icon">
+        ⏸️
+    </span>
+
+    Pausar simulación
+
+</button>
+
+        </aside>
+
+
+
+        <!-- =================================
+             MAPA
+        ================================== -->
+
+        <section class="map-area">
+
+
+            <!-- SELECTOR DE MAPA -->
+
+            <select
+    id="mapaSeleccionado"
+    class="map-selector"
+>
+
+    <option value="">
+        Seleccionar mapa
+    </option>
+
+    <option value="Sintítulo.jpg">
+        Sintítulo.jpg
+    </option>
+
+    <option value="Sintítulo2.jpg">
+        Sintítulo2.jpg
+    </option>
+
+    <option value="Sintítulo3.jpg">
+        Sintítulo3.jpg
+    </option>
+
+    <option value="Sintítulo4.jpg">
+        Sintítulo4.jpg
+    </option>
+
+    <option value="Sintítulo5.jpg">
+        Sintítulo5.jpg
+    </option>
+
+    <option value="Sintítulo6.jpg">
+        Sintítulo6.jpg
+    </option>
+
+    <option value="Sintítulo7.jpg" selected>
+        Sintítulo7.jpg
+    </option>
+
+    <option value="Sintítulo8.jpg">
+        Sintítulo8.jpg
+    </option>
+
+</select>
+
+
+
+            <!-- WORKSPACE -->
+
+            <div
+                id="mapWorkspace"
+                class="map-workspace"
+            >
+
+
+                <div
+                    id="mapLayer"
+                    class="map-layer"
+                >
+
+
+                    <img
+                        id="mapaImagen"
+                        class="map-image"
+                        src="/static/maps/Sint%C3%ADtulo7.jpg"
+                        draggable="false"
+                    >
+
+
+                    <canvas
+                        id="mapCanvas"
+                    ></canvas>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ZOOM -->
+
+            <div
+                id="zoomIndicador"
+                class="zoom-indicator"
+            >
+
+                ZOOM: 100%
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             PANEL DERECHO
+        ================================== -->
+
+        <aside class="right-panel">
+
+
+            <div class="panel-title">
+
+                PROPIEDADES
+
+            </div>
+
+
+            <div class="property">
+
+
+                <div class="property-label">
+
+                    HERRAMIENTA
+
+                </div>
+
+
+                <div
+                    id="herramientaActual"
+                    class="property-value"
+                >
+
+                    Selección
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="property">
+
+
+                <div class="property-label">
+
+                    OBJETO SELECCIONADO
+
+                </div>
+
+                <div class="property">
+
+    <div class="property-label">
+        COLOR
+    </div>
+
+    <input
+        type="color"
+        id="colorObjeto"
+        value="#ff0000"
+        onchange="cambiarColorObjeto(this.value)"
+        style="
+            width:100%;
+            height:35px;
+            border:none;
+            background:none;
+            cursor:pointer;
+        "
+    >
+
+</div>
+
+
+<div class="property">
+
+    <div class="property-label">
+        GROSOR
+    </div>
+
+    <input
+        type="range"
+        id="grosorObjeto"
+        min="1"
+        max="15"
+        value="4"
+        oninput="cambiarGrosorObjeto(this.value)"
+        style="width:100%;"
+    >
+
+    <div
+        id="valorGrosor"
+        class="property-value"
+    >
+        4 px
+    </div>
+
+</div>
+
+                <div
+                    id="objetoSeleccionado"
+                    class="property-value"
+                >
+
+                    Ninguno
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="property">
+
+
+                <div class="property-label">
+
+                    UNIDAD
+
+                </div>
+
+
+                <div
+                    id="unidadSeleccionada"
+                    class="property-value"
+                >
+
+                    Ninguna
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="property">
+
+
+                <div class="property-label">
+
+                    RUTA
+
+                </div>
+
+
+                <div
+                    id="rutaSeleccionada"
+                    class="property-value"
+                >
+
+                    Sin ruta
+
+                </div>
+
+
+            </div>
+
+<button
+    class="top-button"
+    style="width:100%; margin-top:10px;"
+    onclick="eliminarObjetoSeleccionado()"
+>
+    🗑 ELIMINAR SELECCIONADO
+</button>
+
+            <button
+                class="top-button"
+                style="width:100%; margin-top:10px;"
+                onclick="borrarTodo()"
+            >
+
+                🗑 BORRAR DIBUJOS
+
+            </button>
+
+
+        </aside>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         BARRA INFERIOR
+    ====================================== -->
+
+    <footer class="bottom-bar">
+
+
+        <span id="estadoSistema">
+
+            360 Tactical Trainer ·
+            Sistema táctico
+
+        </span>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================
+     JAVASCRIPT
+====================================== -->
+
+<script
+    src="{{ url_for('static', path='js/mapa.js') }}"
+></script>
+
+
+<script>
+
+    function deshacer() {
+
+        console.log(
+            "Deshacer"
+        );
+
+    }
+
+
+    function rehacer() {
+
+        console.log(
+            "Rehacer"
+        );
+
+    }
+
+
+    function guardarPlan() {
+
+        console.log(
+            "Guardar plan"
+        );
+
+    }
+
+
+    function activarModoVehiculo() {
+
+    modoUnidad = true;
+
+    modoRuta = false;
+
+    unidadSeleccionada = null;
+
+
+    const selector =
+        document.getElementById(
+            "tipoUnidad"
+        );
+
+
+    if (selector) {
+
+        selector.value =
+            "camion_inf";
+
+    }
+
+
+    const indicador =
+        document.getElementById(
+            "herramientaActual"
+        );
+
+
+    if (indicador) {
+
+        indicador.textContent =
+            "Herramienta: colocar vehículo";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
